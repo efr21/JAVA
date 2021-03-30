@@ -19,6 +19,9 @@ public class Task1 {
         if (city.isEmpty()) {
                 break;
             }
+        if (city.equals("Stop")) {
+                break;
+            }
             switch (city) {
                     case "Москва":
                     case "Владивосток":
@@ -40,14 +43,10 @@ public class Task1 {
                     case "Кёльн":
                         System.out.println("Германия");
                         break;
-                    case "Stop":
-                        break;
                     default:
                         System.out.println("Неизвестная страна");
                 }
-            if (city.equals("Stop")) {
-                break;
-            }
+
             }
 
 
