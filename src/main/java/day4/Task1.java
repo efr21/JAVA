@@ -22,35 +22,23 @@ public class Task1 {
         }
 
         int count_eight = 0;
-        for (int j = 0; j < arr.length; j++) {
-            if (arr[j] > 8) {
-                count_eight += 1;
-            }
-        }
-
         int count_one = 0;
-        for (int j = 0; j < arr.length; j++) {
-            if (arr[j] == 1) {
-                count_one += 1;
-            }
-        }
-
         int even_nums = 0;
         int odd_nums = 0;
+        int sum = 0;
+
         for (int j = 0; j < arr.length; j++) {
-            if (arr[j] % 2 == 0) {
+            sum += arr[j];
+            if (arr[j] > 8) {
+                count_eight += 1;
+            } else if (arr[j] == 1) {
+                count_one += 1;
+            } else if (arr[j] % 2 == 0) {
                 even_nums += 1;
             } else {
                 odd_nums += 1;
             }
         }
-
-        int sum = 0;
-        for (int j = 0; j < arr.length; j++) {
-            sum += arr[j];
-        }
-
-
 
 
         System.out.println(Arrays.toString(arr));
