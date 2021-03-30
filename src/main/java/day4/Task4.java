@@ -8,33 +8,34 @@
 
 package day4;
 
+import java.util.Arrays;
+
 public class Task4 {
     public static void main(String[] args) {
         int[] nums = new int[100];
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < nums.length; i++) {
             nums[i] = (int) (Math.random() * 10000);
         }
 
-        int[] temp_arr = new int[98];
+        int max_index = -1;
+        int max_sum = Integer.MIN_VALUE;
 
-        int max = 0;
-        int index_max = 0;
-
-        for(int i = 0; i < 100; i++) {
-            if((i +1 != 100) && (i+2 != 100)) {
-                temp_arr[i] = nums[i] + nums[i+1] + nums[i+2];
+        for(int i = 0; i < nums.length -2; i++) {
+            int sum_i  = 0;
+            for (int j =0; j < 3; j++) {
+                sum_i += nums[j + i];
             }
+            if (sum_i > max_sum) {
+                max_sum =sum_i;
+                max_index = i;
+            }
+
         }
 
-        for(int i = 0; i < 98; i++) {
-            if(temp_arr[i] >= max) {
-                max = temp_arr[i];
-                index_max = i;
-            }
-        }
 
-        System.out.println(max);
-        System.out.println(index_max);
+
+        System.out.println(max_sum);
+        System.out.println(max_index);
 
 
 
