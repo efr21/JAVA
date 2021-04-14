@@ -8,6 +8,7 @@ public class Task1 {
     public static void main(String[] args) {
         File file = new File("text");
         printResult(file);
+
     }
 
     public static void printResult(File file)  {

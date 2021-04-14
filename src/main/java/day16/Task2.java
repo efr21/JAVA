@@ -18,6 +18,7 @@ public class Task2 {
                 pw1.print(rand.nextInt(100)+1);
                 pw1.print(" ");
             }
+
             pw1.close();
             Scanner scanner = new Scanner(file1);
             String line = scanner.nextLine();
