@@ -16,28 +16,19 @@ public class Task2 {
     public static List<String> parseFileToStringList(File file)   {
         List<String> namesAndAges = new ArrayList<>();
         try (Scanner scanner = new Scanner(file)) {
-            while (scanner.hasNextLine()) {
+            while (scanner.hasNext()) {
                 namesAndAges.add(scanner.nextLine());
             }
+            for(String line : namesAndAges) {
+                String[] lines = line.split(" ");
+                if (Integer.parseInt(lines[1]) < 0)  throw new IOException();
+            }
+            return namesAndAges;
         } catch (FileNotFoundException e) {
             System.out.println("Файл не найден");
-        }
-        String[][] array = new String[namesAndAges.size()][namesAndAges.size()];
-        int[] arrayAges = new int[namesAndAges.size()];
-
-        for(int i = 0; i < namesAndAges.size(); i++) {
-            array[i] = namesAndAges.get(i).split(" ");
-            arrayAges[i] = Integer.parseInt(array[i][1]);
-            if (arrayAges[i] < 0) {
-                try {
-                    throw new IOException();
-                } catch (IOException e) {
-                    System.out.println("Некорректный входной файл");
-                }
-                namesAndAges = null;
-                return namesAndAges;
-            }
-        }
-        return namesAndAges;
+        } catch (IOException e) {
+        System.out.println("Некорректный входной файл");
+    }
+        return null;
     }
 }

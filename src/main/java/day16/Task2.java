@@ -18,20 +18,14 @@ public class Task2 {
                 pw1.print(rand.nextInt(100)+1);
                 pw1.print(" ");
             }
-
             pw1.close();
             Scanner scanner = new Scanner(file1);
             String line = scanner.nextLine();
             String[] numbers = line.split(" ");
-            int[] numbersInt = new int[numbers.length];
-            int counter = 0;
-            for(String number : numbers) {
-                numbersInt[counter++] = Integer.parseInt(number);
-            }
-            for(int i = 0; i < numbersInt.length -3; i++) {
+            for(int i = 0; i < numbers.length -3; i++) {
                 int sum_i  = 0;
                 for (int j =0; j < 4; j++) {
-                    sum_i += numbersInt[j + i];
+                    sum_i += Integer.parseInt(numbers[j+i]);
                 }
                 pw2.print((double) sum_i / 4);
                 pw2.print(" ");
@@ -48,14 +42,9 @@ public class Task2 {
             Scanner scanner = new Scanner(file);
             String line = scanner.nextLine();
             String[] numbers = line.split(" ");
-            double[] numbersDouble  = new double[numbers.length];
-            int counter = 0;
             double sum = 0;
-            for(String number : numbers) {
-                numbersDouble[counter++] = Double.parseDouble(number);
-            }
-            for (double number : numbersDouble) {
-                sum += number;
+            for (String number : numbers) {
+                sum += Double.parseDouble(number);
             }
             System.out.println((int) sum);
         } catch (FileNotFoundException e) {

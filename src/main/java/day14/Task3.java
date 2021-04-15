@@ -13,38 +13,24 @@ public class Task3 {
         System.out.println(parseFileToObjList(file));
     }
 
-    public static List<Person> parseFileToObjList(File file)   {
-        List<String> namesAndAges = new ArrayList<>();
+    public static List<Person> parseFileToObjList(File file) {
         List<Person> namesAndAgesPersons = new ArrayList<>();
+        List<String> namesAndAges = new ArrayList<>();
         try (Scanner scanner = new Scanner(file)) {
-            while (scanner.hasNextLine()) {
+            while (scanner.hasNext()) {
                 namesAndAges.add(scanner.nextLine());
             }
+            for (String line : namesAndAges) {
+                String[] lines = line.split(" ");
+                if (Integer.parseInt(lines[1]) < 0) throw new IOException();
+                namesAndAgesPersons.add(new Person(Integer.parseInt(lines[1]), lines[0]));
+            }
+            return namesAndAgesPersons;
         } catch (FileNotFoundException e) {
             System.out.println("Файл не найден");
+        } catch (IOException e) {
+            System.out.println("Некорректный входной файл");
         }
-        String[][] array = new String[namesAndAges.size()][namesAndAges.size()];
-        int[] arrayAges = new int[namesAndAges.size()];
-        String[] arrayNames = new String[namesAndAges.size()];
-
-
-        for(int i = 0; i < namesAndAges.size(); i++) {
-            array[i] = namesAndAges.get(i).split(" ");
-            arrayAges[i] = Integer.parseInt(array[i][1]);
-            arrayNames[i] = array[i][0];
-            if (arrayAges[i] < 0) {
-                try {
-                    throw new IOException();
-                } catch (IOException e) {
-                    System.out.println("Некорректный входной файл");
-                }
-            }
-            Person person = new Person();
-            person.setAge(arrayAges[i]);
-            person.setName(arrayNames[i]);
-            namesAndAgesPersons.add(person);
-        }
-        return namesAndAgesPersons;
+        return null;
     }
 }
-
